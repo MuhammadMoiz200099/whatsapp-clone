@@ -11,7 +11,7 @@ import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
-import BottomTabNavigator from './BottomTabNavigator';
+import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Colors from '../constants/Colors';
 import { View } from 'react-native';
@@ -35,6 +35,8 @@ function RootNavigator() {
     <Stack.Navigator screenOptions={{ 
       headerStyle: {
         backgroundColor: Colors.light.tint,
+        shadowOpacity: 0,
+        elevation: 0
       },
       headerTintColor: Colors.light.background,
       headerTitleAlign: 'left',
@@ -42,7 +44,7 @@ function RootNavigator() {
         fontWeight: 'bold'
       }
     }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ 
+      <Stack.Screen name="Root" component={MainTabNavigator} options={{ 
         title: 'WhatsApp',
         headerRight: () => (
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 60, marginRight: 10  }} >

@@ -16,6 +16,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import Colors from '../constants/Colors';
 import { View } from 'react-native';
 import ChatRoomScreen from '../screens/ChatRoom';
+import ContactsScreen from '../screens/ContactsScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -67,7 +68,8 @@ function RootNavigator() {
             </View>
           )
         })} 
-      />       
+      />   
+      <Stack.Screen name="Contacts" component={ContactsScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

@@ -21,7 +21,7 @@ const ChatMessage = (props: ChatMessageProps) => {
             <View style={[
                 styles.messageBox, 
                 { 
-                    backgroundColor: isMyMessage() ? '#DCF8C5' : '#e5e5e5',
+                    backgroundColor: isMyMessage() ? '#DCF8C5' : 'white',
                     marginLeft: isMyMessage() ? 70 : 0, 
                     marginRight: isMyMessage() ? 0 : 70, 
                 }

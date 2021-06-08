@@ -6,6 +6,7 @@
 export type RootStackParamList = {
   Root: undefined;
   ChatRoom: undefined;
+  Contacts: undefined;
   NotFound: undefined;
 };
 
@@ -28,6 +29,7 @@ export type User = {
   id: String;
   name: String;
   imageUri?: String;
+  status?: String;
 }
 
 export type Message = {

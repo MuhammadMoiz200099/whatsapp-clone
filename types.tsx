@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Root: undefined;
   ChatRoom: undefined;
   Contacts: undefined;
+  Camera: undefined;
   NotFound: undefined;
 };
 
@@ -17,19 +18,19 @@ export type MainTabParamList = {
   Calls: undefined;
 };
 
-export type TabOneParamList = {
-  ChatsScreen: undefined;
-};
-
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
-};
-
 export type User = {
   id: String;
   name: String;
   imageUri?: String;
   status?: String;
+}
+
+export type Status = {
+  id: String;
+  name: String;
+  imageUri: String;
+  createdAt?: String;
+  description?: String;
 }
 
 export type Message = {

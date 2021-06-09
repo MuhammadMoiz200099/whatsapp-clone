@@ -16,12 +16,7 @@ export default {
             screens: {
               ChatsScreen: 'one',
             },
-          },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: 'two',
-            },
-          },
+          }
         },
       },
       NotFound: '*',

@@ -17,6 +17,7 @@ import Colors from '../constants/Colors';
 import { View } from 'react-native';
 import ChatRoomScreen from '../screens/ChatRoom';
 import ContactsScreen from '../screens/ContactsScreen';
+import CameraScreen from '../screens/CameraScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (

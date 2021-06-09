@@ -5,6 +5,9 @@ import { User } from '../../types';
 import styles from './style';
 import { useNavigation } from '@react-navigation/native';
 
+import { API, graphqlOperation } from 'aws-amplify';
+import { createChatRoomUser, createChatRoom } from '../../src/graphql/mutations';
+
 export type ContactListItemProps = {
     user: User;
 }
@@ -17,6 +20,7 @@ const ContactListItem = (props: ContactListItemProps) => {
 
 
     const openChat = () => {
+
     }
 
     return (

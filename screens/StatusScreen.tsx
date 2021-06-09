@@ -10,12 +10,12 @@ const StatusScreen = () => {
         <ScrollView contentContainerStyle={styles.container}>
             <StatusListItem user={status.currentUser} me />
             <Text style={styles.viewBreakText}>Recent updates</Text>
-            {status.recentUpdated.map((item) => (
-                <StatusListItem user={item} />
+            {status.recentUpdated.map((item, idx) => (
+                <StatusListItem key={idx} user={item} />
             ))}
             <Text style={styles.viewBreakText}>Viewed updates</Text>
-            {status.viewedUpdated.map((item) => (
-                <StatusListItem user={item} />
+            {status.viewedUpdated.map((item, idx) => (
+                <StatusListItem key={idx} user={item} />
             ))}
         </ScrollView>
     )

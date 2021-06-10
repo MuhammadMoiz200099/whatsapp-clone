@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import useColorScheme from "../../hooks/useColorScheme";
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 10,
     },
     leftContainer: {
@@ -20,17 +20,17 @@ const styles = StyleSheet.create({
     midContainer: {
         justifyContent: 'space-evenly',
     },
+    midDateContainer: {
+        flexDirection: 'row'
+    },
     username: {
         fontWeight: 'bold',
         fontSize: 16,
     },
-    lastMessage: {
+    status: {
         fontSize: 16,
         color: 'grey',
-    },
-    timeStamp: {
-        fontSize: 14,
-        color: 'grey',
+        marginLeft: 10
     }
 });
 

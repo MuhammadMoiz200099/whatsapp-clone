@@ -1,9 +1,10 @@
-import moment from 'moment';
 import React from 'react';
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { User } from '../../types';
 import styles from './style';
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../../constants/Colors';
+import useColorScheme from '../../hooks/useColorScheme';
 
 import { API, graphqlOperation } from 'aws-amplify';
 import { createChatRoomUser, createChatRoom } from '../../src/graphql/mutations';
@@ -14,6 +15,7 @@ export type ContactListItemProps = {
 
 const ContactListItem = (props: ContactListItemProps) => {
 
+    const colorSchema = useColorScheme();
     const navigation  = useNavigation();
 
     const { user } = props;
@@ -29,7 +31,7 @@ const ContactListItem = (props: ContactListItemProps) => {
                 <View style={styles.leftContainer}>
                     <Image source={{ uri: user.imageUri as string }} style={styles.avatar} />
                     <View style={styles.midContainer}>
-                        <Text style={styles.username}>{user.name}</Text>
+                        <Text style={{ ...styles.username, color: Colors[colorSchema].screenMainText }}>{user.name}</Text>
                         <Text style={styles.status}>{user.status}</Text>
                     </View>
                 </View>

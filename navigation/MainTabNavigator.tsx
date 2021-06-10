@@ -26,12 +26,13 @@ export default function MainTabNavigator() {
     <MainTab.Navigator
       initialRouteName="Chats"
       tabBarOptions={{ 
-        activeTintColor: Colors[colorScheme].background,
+        activeTintColor: Colors[colorScheme].headerActiveText,
+        inactiveTintColor: Colors[colorScheme].headerinActiveText,
         style: {
-          backgroundColor: Colors[colorScheme].tint,
+          backgroundColor: Colors[colorScheme].headerColor,
         },
         indicatorStyle: {
-          backgroundColor: Colors[colorScheme].background,
+          backgroundColor: Colors[colorScheme].headerIndicators,
           height: 4
         },
         labelStyle: {

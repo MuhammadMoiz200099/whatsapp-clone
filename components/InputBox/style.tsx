@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     icon: {
-      marginHorizontal: 5,  
+      marginHorizontal: 10,  
     },
     buttonContainer: { 
-        backgroundColor: Colors.light.tint,
+        backgroundColor: Colors.light.screenFloationIconColor,
         borderRadius: 50,
         width: 50,
         height: 50,

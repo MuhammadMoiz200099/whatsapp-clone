@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { API, graphqlOperation } from 'aws-amplify';
-
 import { listUsers } from './../src/graphql/queries';
+
 import ContactListItem from '../components/ContactListItem';
+import ContactDefaultItem from '../components/ContactDefaultItem';
+import useColorScheme from '../hooks/useColorScheme';
+import Colors from '../constants/Colors';
 import { User } from '../types';
 
 export default function ContactsScreen() {
 
   const [users, setUsers] = useState<User[]>([]);
+  const colorScheme = useColorScheme();
+
+  const styles = StyleSheet.create({
+    main:{
+      backgroundColor: Colors[colorScheme].AppBackground
+    },
+    container: {
+      marginTop: 5,
+      marginBottom: 10,
+    }
+  });
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -25,21 +39,17 @@ export default function ContactsScreen() {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        style={{ width: '100%' }}
-        data={users}
-        renderItem={({ item }) => <ContactListItem user={item} />}
-        keyExtractor={(item: any) => item.id}
-      />
+    <View style={styles.main}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <ContactDefaultItem filterProp="group" iconName="people" text="New group" background />
+        <ContactDefaultItem filterProp="newContact" iconName="person-add" text="New contact" background rightIcon />
+        {users.map((item, idx) => (
+          <ContactListItem key={idx} user={item} />
+        ))}
+        <ContactDefaultItem filterProp="share" iconName="share-social" text="Invite friends" />
+        <ContactDefaultItem filterProp="help" iconName="help-circle" text="Contacts help" />
+      </ScrollView>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});

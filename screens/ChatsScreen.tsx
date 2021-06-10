@@ -5,8 +5,22 @@ import { ChatRoom } from '../types';
 
 import ChatListItem from '../components/ChatListItem';
 import NewMessageButton from '../components/NewMessageButton';
+import Colors from '../constants/Colors';
+import useColorScheme from '../hooks/useColorScheme';
+
 
 export default function ChatsScreen() {
+  
+  const colorScheme = useColorScheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: Colors[colorScheme].AppBackground
+    }
+  });
 
   return (
     <View style={styles.container}>
@@ -20,11 +34,3 @@ export default function ChatsScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});

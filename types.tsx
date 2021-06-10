@@ -33,6 +33,16 @@ export type Status = {
   description?: String;
 }
 
+export type Calls = {
+  id: String;
+  name: String;
+  imageUri: String;
+  createdAt: String;
+  missed: boolean;
+  incomming?: boolean;
+  outgoing?: boolean;
+}
+
 export type Message = {
   id: String;
   content: String;

@@ -7,7 +7,7 @@ export default {
   },
   recentUpdated: [{
     id: 'u1',
-    name: 'Vadim',
+    name: 'Urwah',
     imageUri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg',
     createdAt: '2020-10-10T12:48:00.000Z'
   }, {
@@ -58,7 +58,7 @@ export default {
   }],
   viewedUpdated: [{
     id: 'u1',
-    name: 'Vadim',
+    name: 'Urwah',
     imageUri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg',
     createdAt: '2020-10-10T12:48:00.000Z'
   }, {

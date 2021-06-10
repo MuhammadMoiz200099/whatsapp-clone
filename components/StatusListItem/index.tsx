@@ -3,6 +3,7 @@ import moment from 'moment';
 import React from 'react';
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import Colors from '../../constants/Colors';
+import useColorScheme from '../../hooks/useColorScheme';
 import { Status } from '../../types';
 import styles from './styles';
 
@@ -13,6 +14,7 @@ export type StatusListItemProps = {
 
 const StatusListItem = (props: StatusListItemProps) => {
 
+    const colorSchema = useColorScheme();
     const { user, me } = props;
 
     const openStatus = () => {
@@ -33,7 +35,7 @@ const StatusListItem = (props: StatusListItemProps) => {
                     </View>
 
                     <View style={styles.midContainer}>
-                        <Text style={styles.username}>{user.name}</Text>
+                        <Text style={{ ...styles.username, color: Colors[colorSchema].screenMainText }}>{user.name}</Text>
                         {me ? (
 
                             <Text style={styles.status}>{user.description}</Text>

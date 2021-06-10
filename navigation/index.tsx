@@ -18,6 +18,7 @@ import { View } from 'react-native';
 import ChatRoomScreen from '../screens/ChatRoom';
 import ContactsScreen from '../screens/ContactsScreen';
 import CameraScreen from '../screens/CameraScreen';
+import useColorScheme from '../hooks/useColorScheme';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -34,14 +35,17 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+
+  const colorScheme = useColorScheme();
+
   return (
     <Stack.Navigator screenOptions={{ 
       headerStyle: {
-        backgroundColor: Colors.light.tint,
+        backgroundColor: Colors[colorScheme].headerColor,
         shadowOpacity: 0,
         elevation: 0
       },
-      headerTintColor: Colors.light.background,
+      headerTintColor: Colors[colorScheme].headerText,
       headerTitleAlign: 'left',
       headerTitleStyle: {
         fontWeight: 'bold'
@@ -50,9 +54,9 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={MainTabNavigator} options={{ 
         title: 'WhatsApp',
         headerRight: () => (
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 60, marginRight: 10  }} >
-            <Octicons name="search" size={22} color="white" />
-            <MaterialCommunityIcons name="dots-vertical" size={22} color="white" />
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 60, marginRight: 10,  }} >
+            <Octicons name="search" size={22} color={Colors[colorScheme].headerText} />
+            <MaterialCommunityIcons name="dots-vertical" size={22} color={Colors[colorScheme].headerText} />
           </View>
         )
        }} />
@@ -61,7 +65,7 @@ function RootNavigator() {
         component={ChatRoomScreen} 
         options={({ route }) => ({ 
           title: (route.params as any).name,
-          headerRight: () => (
+           headerRight: () => (
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 120, marginRight: 10  }}>
               <FontAwesome5 name="video" size={22} color={'white'} />  
               <MaterialIcons name="call" size={22} color={'white'} />
@@ -70,7 +74,18 @@ function RootNavigator() {
           )
         })} 
       />   
-      <Stack.Screen name="Contacts" component={ContactsScreen} />
+      <Stack.Screen 
+        name="Contacts" 
+        component={ContactsScreen} 
+        options={{
+          headerRight: () => (
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 60, marginRight: 10  }} >
+              <Octicons name="search" size={22} color="white" />
+              <MaterialCommunityIcons name="dots-vertical" size={22} color="white" />
+            </View>
+          )
+        }}
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

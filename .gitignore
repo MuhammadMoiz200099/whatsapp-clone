@@ -11,3 +11,12 @@ web-build/
 
 # macOS
 .DS_Store
+
+#amplify
+amplify/\#current-cloud-backend
+amplify/.config/local-*
+amplify/logs
+amplify/mock-data
+build/
+dist/
+.secret-*

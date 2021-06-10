@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList, ImageBackground } from 'react-native';
 import ChatMessage from '../components/ChatMessage'
 
-import { useRoute } from '@react-navigation/native';
 import chatRoomData from '../data/Chats';
 
 import BG from '../assets/images/BG.png';
@@ -12,7 +11,6 @@ import useColorScheme from '../hooks/useColorScheme';
 
 const ChatRoomScreen = () => {
 
-    const route = useRoute();
     const colorScheme = useColorScheme();
 
     return (

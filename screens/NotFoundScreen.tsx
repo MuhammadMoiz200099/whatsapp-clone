@@ -10,33 +10,10 @@ export default function NotFoundScreen({
   navigation,
 }: StackScreenProps<RootStackParamList, 'NotFound'>) {
 
-  const colorScheme = useColorScheme();
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 20,
-      backgroundColor: Colors[colorScheme].AppBackground
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    link: {
-      marginTop: 15,
-      paddingVertical: 15,
-    },
-    linkText: {
-      fontSize: 14,
-      color: '#2e78b7',
-    },
-  });
-  
+  const colorScheme = useColorScheme();  
 
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, backgroundColor: Colors[colorScheme].AppBackground }}>
       <Text style={styles.title}>This screen doesn't exist.</Text>
       <TouchableOpacity onPress={() => navigation.replace('Root')} style={styles.link}>
         <Text style={styles.linkText}>Go to home screen!</Text>
@@ -44,3 +21,24 @@ export default function NotFoundScreen({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  link: {
+    marginTop: 15,
+    paddingVertical: 15,
+  },
+  linkText: {
+    fontSize: 14,
+    color: '#2e78b7',
+  },
+});

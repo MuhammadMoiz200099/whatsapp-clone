@@ -10,18 +10,9 @@ import Colors from '../constants/Colors';
 export default function CallsScreen() {
 
   const colorScheme = useColorScheme();
-
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: Colors[colorScheme].AppBackground,
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }
-  });
   
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, backgroundColor: Colors[colorScheme].AppBackground }}>
       <FlatList 
         style={{ width: '100%' }}
         data={calls} 
@@ -32,3 +23,11 @@ export default function CallsScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});

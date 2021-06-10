@@ -14,16 +14,6 @@ export default function ContactsScreen() {
   const [users, setUsers] = useState<User[]>([]);
   const colorScheme = useColorScheme();
 
-  const styles = StyleSheet.create({
-    main:{
-      backgroundColor: Colors[colorScheme].AppBackground
-    },
-    container: {
-      marginTop: 5,
-      marginBottom: 10,
-    }
-  });
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -39,7 +29,7 @@ export default function ContactsScreen() {
   }, [])
 
   return (
-    <View style={styles.main}>
+    <View style={{ backgroundColor: Colors[colorScheme].AppBackground }}>
       <ScrollView contentContainerStyle={styles.container}>
         <ContactDefaultItem filterProp="group" iconName="people" text="New group" background />
         <ContactDefaultItem filterProp="newContact" iconName="person-add" text="New contact" background rightIcon />
@@ -52,4 +42,11 @@ export default function ContactsScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 5,
+    marginBottom: 10,
+  }
+});
 

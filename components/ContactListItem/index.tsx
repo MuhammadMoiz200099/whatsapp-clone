@@ -6,6 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import Colors from '../../constants/Colors';
 import useColorScheme from '../../hooks/useColorScheme';
 
+import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { createChatRoomUser, createChatRoom } from '../../src/graphql/mutations';
+
 export type ContactListItemProps = {
     user: User;
 }
@@ -18,7 +21,48 @@ const ContactListItem = (props: ContactListItemProps) => {
     const { user } = props;
 
 
-    const openChat = () => {
+    const openChat = async () => {
+        try {
+            // creating a new chat room
+            const newChatRoomData: any = await API.graphql(graphqlOperation(
+                createChatRoom, { input: {} }
+            ));
+
+            if(!newChatRoomData.data) {
+                console.log("Failed to create a chat room");
+                return;
+            }
+
+            const newChatRoom = newChatRoomData.data.createChatRoom;
+            // adding selected user to chat room
+            await API.graphql(graphqlOperation(
+                createChatRoomUser, {
+                    input: {
+                        userID: user.id,
+                        chatRoomID: newChatRoom.id   
+                    }
+                }
+            ));
+            // adding current user to chatroom
+            const userInfo = await Auth.currentAuthenticatedUser();
+            await API.graphql(graphqlOperation(
+                createChatRoomUser, {
+                    input: {
+                        userID: userInfo.attributes.sub,
+                        chatRoomID: newChatRoom.id
+                    }
+                }
+            ));
+
+            navigation.navigate('ChatRoom', {
+                id: newChatRoom.id,
+                name: 'Hassan'
+            });
+
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 
     return (

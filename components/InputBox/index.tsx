@@ -1,21 +1,54 @@
 import { FontAwesome5, MaterialCommunityIcons, Entypo, Fontisto, MaterialIcons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextInput, View, TouchableOpacity } from 'react-native';  
 import Colors from '../../constants/Colors';
 import useColorScheme from '../../hooks/useColorScheme';
 import styles from './style';
 
-const InputBox = () => {
+import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { createMessage } from './../../src/graphql/mutations';
+
+export type inputBoxProps = {
+    chatRoomID: any;
+}
+
+const InputBox = (props: inputBoxProps) => {
+
+    const { chatRoomID } = props; 
 
     const colorScheme = useColorScheme();
     const [message, setMessage] = useState('');
+    const [myUserId, setMyUserId] = useState(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userInfo = await Auth.currentAuthenticatedUser();
+            setMyUserId(userInfo.attributes.sub);
+        }
+        fetchUser();
+    }, [])
 
     const sendVoiceMessage = () => {
         console.warn('Voice message');
     }
 
-    const sendTextMessage = () => {
-        console.warn('Text message');
+    const sendTextMessage = async () => {
+        try {
+            await API.graphql(
+                graphqlOperation(
+                    createMessage, {
+                        input: {
+                            content: message,
+                            userID: myUserId,
+                            chatRoomID
+                        }
+                    }
+                )
+            )
+        }
+        catch(e) {
+            console.log(e);
+        }
         setMessage('');
     }
 

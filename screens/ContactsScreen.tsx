@@ -1,29 +1,35 @@
-import * as React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import users from '../data/Users';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { API, graphqlOperation } from 'aws-amplify';
+import { listUsers } from './../src/graphql/queries';
 
 import ContactListItem from '../components/ContactListItem';
 import ContactDefaultItem from '../components/ContactDefaultItem';
 import useColorScheme from '../hooks/useColorScheme';
 import Colors from '../constants/Colors';
+import { User } from '../types';
 
 export default function ContactsScreen() {
 
+  const [users, setUsers] = useState<User[]>([]);
   const colorScheme = useColorScheme();
 
-  const styles = StyleSheet.create({
-    main:{
-      backgroundColor: Colors[colorScheme].AppBackground
-    },
-    container: {
-      marginTop: 5,
-      marginBottom: 10,
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData: any = await API.graphql(graphqlOperation(listUsers));
+        setUsers(userData.data.listUsers.items);
+      }
+      catch (e) {
+        console.log(e)
+      }
     }
-  });
-  
+
+    fetchUser();
+  }, [])
 
   return (
-    <View style={styles.main}>
+    <View style={{ backgroundColor: Colors[colorScheme].AppBackground }}>
       <ScrollView contentContainerStyle={styles.container}>
         <ContactDefaultItem filterProp="group" iconName="people" text="New group" background />
         <ContactDefaultItem filterProp="newContact" iconName="person-add" text="New contact" background rightIcon />
@@ -36,3 +42,11 @@ export default function ContactsScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 5,
+    marginBottom: 10,
+  }
+});
+

@@ -10,48 +10,45 @@ import Colors from '../constants/Colors';
 const StatusScreen = () => {
 
     const colorScheme = useColorScheme();
-
-    const styles = StyleSheet.create({
-        container: {
-            backgroundColor: Colors[colorScheme].AppBackground,
-            paddingBottom: 120
-        },
-        viewBreakText: {
-            fontSize: 15,
-            fontWeight: '700',
-            marginHorizontal: 20,
-            marginVertical: 10,
-            color: Colors[colorScheme].inScreenTextColor
-        },
-        viewBreak: {
-            backgroundColor: Colors[colorScheme].inScreenBackgroundColor,
-            marginTop: 5,
-            marginBottom: 5,
-            borderColor: '#f3f3f3'
-        }
-    });
     
 
     return (
-        <View>
-            <ScrollView contentContainerStyle={styles.container}>
+        <>
+            <ScrollView contentContainerStyle={{ ...styles.container, backgroundColor: Colors[colorScheme].AppBackground, }}>
                 <StatusListItem user={status.currentUser} me />
-                <View style={styles.viewBreak}>
-                    <Text style={styles.viewBreakText}>Recent updates</Text>
+                <View style={{ ...styles.viewBreak, backgroundColor: Colors[colorScheme].inScreenBackgroundColor }}>
+                    <Text style={{ ...styles.viewBreakText, color: Colors[colorScheme].inScreenTextColor }}>Recent updates</Text>
                 </View>
                 {status.recentUpdated.map((item, idx) => (
                     <StatusListItem key={idx} user={item} />
                 ))}
-                <View style={styles.viewBreak}>
-                    <Text style={styles.viewBreakText}>Viewed updates</Text>
+                <View style={{ ...styles.viewBreak, backgroundColor: Colors[colorScheme].inScreenBackgroundColor }}>
+                    <Text style={{ ...styles.viewBreakText, color: Colors[colorScheme].inScreenTextColor }}>Viewed updates</Text>
                 </View>
                 {status.viewedUpdated.map((item, idx) => (
                     <StatusListItem key={idx} user={item} />
                 ))}
             </ScrollView>
             <StatusFloatingButtons />
-        </View>
+        </>
     )
 }
 
 export default StatusScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        paddingBottom: 120
+    },
+    viewBreakText: {
+        fontSize: 15,
+        fontWeight: '700',
+        marginHorizontal: 20,
+        marginVertical: 10,
+    },
+    viewBreak: {
+        marginTop: 5,
+        marginBottom: 5,
+        borderColor: '#f3f3f3'
+    }
+});

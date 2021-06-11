@@ -34,7 +34,8 @@ export default {
     myChatMessageBoxColor: '#DCF8C5',
     othersChatMessageTextColor: '#000',
     myChatMessageTextColor: '#000',
-    chatMessageTimeStampColor: 'gray'
+    chatMessageTimeStampColor: 'gray',
+    LoaderBackground: BaseThemeColor,
   },
   dark: {
     text: '#fff',
@@ -64,6 +65,7 @@ export default {
     myChatMessageBoxColor: tintColorLight,
     othersChatMessageTextColor: '#d3d3d5',
     myChatMessageTextColor: '#c2d9db',
-    chatMessageTimeStampColor: '#c5c5c5'
+    chatMessageTimeStampColor: '#c5c5c5',
+    LoaderBackground: BaseThemeColor,
   },
 };

@@ -15,7 +15,7 @@ import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Colors from '../constants/Colors';
 import { View } from 'react-native';
-import ChatRoomScreen from '../screens/ChatRoom';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
 import ContactsScreen from '../screens/ContactsScreen';
 import CameraScreen from '../screens/CameraScreen';
 import useColorScheme from '../hooks/useColorScheme';

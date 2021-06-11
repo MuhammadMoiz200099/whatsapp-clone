@@ -1,16 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
-import { FontAwesome, Ionicons, Entypo } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function CameraScreen() {
   const [hasPermission, setHasPermission] = useState<boolean>(false);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [flash, setFlash] = useState(Camera.Constants.FlashMode.auto);
 
   const cam = useRef<Camera | null>();
 
   const _takePicture = async () => {
     if (cam.current) {
+      if(flash === Camera.Constants.FlashMode.auto) {
+        setFlash(Camera.Constants.FlashMode.torch);
+        setTimeout(() => {
+          setFlash(Camera.Constants.FlashMode.off)
+        }, 500);
+      }
+
       const options = { quality: 0.5, base64: true, skipProcessing: false };
 
       let photo = await cam.current.takePictureAsync(options);
@@ -19,6 +27,16 @@ export default function CameraScreen() {
       if (source) {
         cam.current.resumePreview();
       }
+    }
+  }
+
+  const toggleFlashLight = () => {
+    if(flash === Camera.Constants.FlashMode.auto) {
+      setFlash(Camera.Constants.FlashMode.torch);
+    } else if (flash === Camera.Constants.FlashMode.torch) {
+      setFlash(Camera.Constants.FlashMode.off)
+    } else if (flash === Camera.Constants.FlashMode.off) {
+      setFlash(Camera.Constants.FlashMode.auto)
     }
   }
 
@@ -37,13 +55,17 @@ export default function CameraScreen() {
   }
   return (
     <View style={styles.container}>
-      <Camera ref={cam as any} style={styles.camera} type={type}>
+      <Camera flashMode={flash} ref={cam as any} style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
           <View style={styles.cameraOptions}>
             <View>
               <TouchableOpacity
-                style={styles.button}>
-                <FontAwesome name="flash" size={30} color="white" />
+                style={styles.button}
+                onPress={() => toggleFlashLight()}
+              >
+                {flash === Camera.Constants.FlashMode.auto && (<MaterialCommunityIcons name="flash-auto" size={30} color="white" />)}
+                {flash === Camera.Constants.FlashMode.torch && (<MaterialCommunityIcons name="flash" size={30} color="white" />)}
+                {flash === Camera.Constants.FlashMode.off && (<MaterialCommunityIcons name="flash-off" size={30} color="white" />)}
               </TouchableOpacity>
             </View>
             <View>

@@ -17,17 +17,17 @@ const ChatListItem = (props: ChatListItemProps) => {
 
     const colorSchema = useColorScheme();
     const navigation  = useNavigation();
-    const [otherUser, setOtherUser] = useState<any>({});
+    const [otherUser, setOtherUser] = useState<any>(null);
 
     const { chatRoom }: any = props;
 
     useEffect(() => {
         const getOtherUser = async () => {
             const userInfo = await Auth.currentAuthenticatedUser();
-            if(chatRoom.chatRoomUsers.items[0].user.id === userInfo.attributes.sub) {
-                setOtherUser(chatRoom.chatRoomUsers.items[1].user);
+            if(chatRoom?.chatRoomUsers.items[0].user.id === userInfo.attributes.sub) {
+                setOtherUser(chatRoom?.chatRoomUsers.items[1].user);
             } else {
-                setOtherUser(chatRoom.chatRoomUsers.items[0].user);
+                setOtherUser(chatRoom?.chatRoomUsers.items[0].user);
             }
         }
         getOtherUser();

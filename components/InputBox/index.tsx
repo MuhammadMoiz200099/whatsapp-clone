@@ -10,11 +10,12 @@ import { createMessage, updateChatRoom } from './../../src/graphql/mutations';
 
 export type inputBoxProps = {
     chatRoomID: any;
+    messageSend: () => void;
 }
 
 const InputBox = (props: inputBoxProps) => {
 
-    const { chatRoomID } = props;
+    const { chatRoomID, messageSend } = props;
 
     const colorScheme = useColorScheme();
     const [message, setMessage] = useState('');
@@ -51,12 +52,15 @@ const InputBox = (props: inputBoxProps) => {
     }
 
     const sendTextMessage = async () => {
+        const currentMessage = message;
+        setMessage('');
+        messageSend();
         try {
             const newMessageData: any = await API.graphql(
                 graphqlOperation(
                     createMessage, {
                     input: {
-                        content: message,
+                        content: currentMessage,
                         userID: myUserId,
                         chatRoomID
                     }
@@ -68,7 +72,6 @@ const InputBox = (props: inputBoxProps) => {
         catch (e) {
             console.log(e);
         }
-        setMessage('');
     }
 
     const actionPerformed = () => {

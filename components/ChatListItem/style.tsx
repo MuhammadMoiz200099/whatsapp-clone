@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import useColorScheme from "../../hooks/useColorScheme";
 
 const styles = StyleSheet.create({
     container: {
@@ -7,6 +6,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         padding: 10,
+        position: 'relative'
     },
     leftContainer: {
         flexDirection: 'row',
@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
         color: 'grey',
     },
     timeStamp: {
+        position: 'absolute',
+        right: 10,
+        top: 16,
         fontSize: 14,
         color: 'grey',
     }

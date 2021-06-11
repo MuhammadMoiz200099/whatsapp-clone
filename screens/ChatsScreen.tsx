@@ -14,7 +14,7 @@ import { ChatRoom } from '../types';
 export default function ChatsScreen() {
   
   const colorScheme = useColorScheme();
-  // const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+  const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
   useEffect(() => {
     const fetchChatRooms = async () => {
@@ -27,7 +27,7 @@ export default function ChatsScreen() {
             id: userInfo.attributes.sub
           }
         ));
-        // setChatRooms(userData.data.getUser.chatRoomUser.items);
+        setChatRooms(userData.data.getUser.chatRoomUser.items);
         console.log(userData);
       }
       catch (e) {
@@ -42,7 +42,7 @@ export default function ChatsScreen() {
       <FlatList 
         style={{ width: '100%' }}
         data={chatRooms} 
-        renderItem={({ item }) => <ChatListItem chatRoom={item} />}
+        renderItem={({ item }: any) => <ChatListItem chatRoom={item.chatRoom} />}
         keyExtractor={(item: any) => item.id}
       />
       <NewMessageButton />

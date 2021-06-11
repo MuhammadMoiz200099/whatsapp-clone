@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     message: {
-
+        fontSize: 16,
     },
     time: {
         alignSelf: 'flex-end',
-        color: 'grey'
+        color: '#c5c5c5'
     }
 });
 

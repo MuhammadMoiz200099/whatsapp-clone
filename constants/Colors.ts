@@ -30,6 +30,11 @@ export default {
     inputText: '#000',
     inputIconColor: 'gray',
     inputPlaceHolderColor: '#a9a9a9',
+    othersChatMessageBoxColor: 'white',
+    myChatMessageBoxColor: '#DCF8C5',
+    othersChatMessageTextColor: '#000',
+    myChatMessageTextColor: '#000',
+    chatMessageTimeStampColor: 'gray'
   },
   dark: {
     text: '#fff',
@@ -55,5 +60,10 @@ export default {
     inputText: '#fff',
     inputIconColor: '#bfc2c3',
     inputPlaceHolderColor: '#757575',
+    othersChatMessageBoxColor: '#202f35',
+    myChatMessageBoxColor: tintColorLight,
+    othersChatMessageTextColor: '#d3d3d5',
+    myChatMessageTextColor: '#c2d9db',
+    chatMessageTimeStampColor: '#c5c5c5'
   },
 };

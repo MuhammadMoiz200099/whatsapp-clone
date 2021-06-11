@@ -28,7 +28,6 @@ export default function ChatsScreen() {
           }
         ));
         setChatRooms(userData.data.getUser.chatRoomUser.items);
-        console.log(userData);
       }
       catch (e) {
         console.log(e);
@@ -53,7 +52,7 @@ export default function ChatsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   }
 });

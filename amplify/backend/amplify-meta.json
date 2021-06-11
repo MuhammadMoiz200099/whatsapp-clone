@@ -28,7 +28,7 @@
         "IdentityPoolName": "whatsappclonee41a4197_identitypool_e41a4197__dev",
         "UserPoolName": "whatsappclonee41a4197_userpool_e41a4197"
       },
-      "lastPushTimeStamp": "2021-06-11T10:38:55.166Z",
+      "lastPushTimeStamp": "2021-06-11T12:43:02.679Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-whatsappclone-dev-223223-deployment/amplify-cfn-templates/auth/whatsappclonee41a4197-cloudformation-template.yml",
         "logicalId": "authwhatsappclonee41a4197"
@@ -52,12 +52,12 @@
         "GraphQLAPIIdOutput": "j5voq24q6bf5zmbxyltfi2utqy",
         "GraphQLAPIEndpointOutput": "https://mgcvyc5fdfgj7cepsmc3rfaapq.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2021-06-11T10:39:04.763Z",
+      "lastPushTimeStamp": "2021-06-11T12:43:07.399Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-whatsappclone-dev-223223-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiwhatsappclone"
       },
-      "lastPushDirHash": "sc5QApsmUZHwT2LCiHT2nU5Zvuc="
+      "lastPushDirHash": "dFhLcN0pdT1JwigvFbIFMwHdOlU="
     }
   }
 }

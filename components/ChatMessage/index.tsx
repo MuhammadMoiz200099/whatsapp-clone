@@ -1,6 +1,8 @@
 import moment from 'moment';
 import React from 'react';
 import { Text, View } from 'react-native';
+import Colors from '../../constants/Colors';
+import useColorScheme from '../../hooks/useColorScheme';
 import { Message } from '../../types';
 import styles from './style';
 
@@ -11,6 +13,7 @@ export type ChatMessageProps = {
 
 const ChatMessage = (props: ChatMessageProps) => {
 
+    const colorScheme = useColorScheme();
     const { message, myId } = props;
 
     const isMyMessage = () => {
@@ -22,14 +25,14 @@ const ChatMessage = (props: ChatMessageProps) => {
             <View style={[
                 styles.messageBox, 
                 { 
-                    backgroundColor: isMyMessage() ? '#DCF8C5' : 'white',
+                    backgroundColor: isMyMessage() ? Colors[colorScheme].myChatMessageBoxColor : Colors[colorScheme].othersChatMessageBoxColor,
                     marginLeft: isMyMessage() ? 70 : 0, 
                     marginRight: isMyMessage() ? 0 : 70, 
                 }
             ]}>
                 {!isMyMessage() && (<Text style={styles.name}>{message.user?.name}</Text>)}
-                <Text style={styles.message}>{message.content}</Text>
-                <Text style={styles.time}>{moment(message.createdAt as string).fromNow()}</Text>
+                <Text style={{ ...styles.message, color: isMyMessage() ? Colors[colorScheme].myChatMessageTextColor : Colors[colorScheme].othersChatMessageTextColor}}>{message.content}</Text>
+                <Text style={{ ...styles.time, color: Colors[colorScheme].chatMessageTimeStampColor }}>{moment(message.createdAt as string).fromNow()}</Text>
             </View>
         </View>
     )

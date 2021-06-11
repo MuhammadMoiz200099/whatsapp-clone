@@ -18,7 +18,6 @@ export default function CameraScreen() {
 
       if (source) {
         cam.current.resumePreview();
-        console.log('picture source', source);
       }
     }
   }

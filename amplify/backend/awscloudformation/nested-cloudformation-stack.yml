@@ -134,7 +134,7 @@
             ]
           },
           "S3DeploymentBucket": "amplify-whatsappclone-dev-223223-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/1179af1037bf70a52a2ae500f98619f490d82105",
+          "S3DeploymentRootKey": "amplify-appsync-files/b75f73e8020591196ec4bde06fa552bcd57f672b",
           "env": "dev"
         }
       }

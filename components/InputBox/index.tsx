@@ -1,12 +1,12 @@
 import { FontAwesome5, MaterialCommunityIcons, Entypo, Fontisto, MaterialIcons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
-import { TextInput, View, TouchableOpacity } from 'react-native';  
+import { TextInput, View, TouchableOpacity } from 'react-native';
 import Colors from '../../constants/Colors';
 import useColorScheme from '../../hooks/useColorScheme';
 import styles from './style';
 
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import { createMessage } from './../../src/graphql/mutations';
+import { createMessage, updateChatRoom } from './../../src/graphql/mutations';
 
 export type inputBoxProps = {
     chatRoomID: any;
@@ -14,7 +14,7 @@ export type inputBoxProps = {
 
 const InputBox = (props: inputBoxProps) => {
 
-    const { chatRoomID } = props; 
+    const { chatRoomID } = props;
 
     const colorScheme = useColorScheme();
     const [message, setMessage] = useState('');
@@ -32,42 +32,61 @@ const InputBox = (props: inputBoxProps) => {
         console.warn('Voice message');
     }
 
-    const sendTextMessage = async () => {
+    const updateChatRoomLastMessage = async (messageId: string) => {
         try {
             await API.graphql(
                 graphqlOperation(
-                    createMessage, {
+                    updateChatRoom, {
                         input: {
-                            content: message,
-                            userID: myUserId,
-                            chatRoomID
+                            id: chatRoomID,
+                            lastMessageID: messageId
                         }
                     }
                 )
             )
         }
-        catch(e) {
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    const sendTextMessage = async () => {
+        try {
+            const newMessageData: any = await API.graphql(
+                graphqlOperation(
+                    createMessage, {
+                    input: {
+                        content: message,
+                        userID: myUserId,
+                        chatRoomID
+                    }
+                }
+                )
+            );
+            await updateChatRoomLastMessage(newMessageData.data.createMessage.id);
+        }
+        catch (e) {
             console.log(e);
         }
         setMessage('');
     }
 
     const actionPerformed = () => {
-        if(!message) {
+        if (!message) {
             sendVoiceMessage();
         } else {
             sendTextMessage()
         }
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <View style={{ ...styles.mainContainer, backgroundColor: Colors[colorScheme].inputBackground }}>
                 <FontAwesome5 name="laugh" size={24} color={Colors[colorScheme].inputIconColor} />
-                <TextInput 
-                    placeholder="Type a Message" 
-                    style={{ ...styles.textInput, color: Colors[colorScheme].inputText }} 
-                    multiline 
+                <TextInput
+                    placeholder="Type a Message"
+                    style={{ ...styles.textInput, color: Colors[colorScheme].inputText }}
+                    multiline
                     value={message}
                     onChangeText={setMessage}
                     placeholderTextColor={Colors[colorScheme].inputPlaceHolderColor}

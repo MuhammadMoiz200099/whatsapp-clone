@@ -48,10 +48,10 @@ const ChatListItem = (props: ChatListItemProps) => {
                     <Image source={{ uri: otherUser.imageUri as string }} style={styles.avatar} />
                     <View style={styles.midContainer}>
                         <Text style={{ ...styles.username, color: Colors[colorSchema].screenMainText }}>{otherUser.name}</Text>
-                        <Text style={styles.lastMessage}>{chatRoom.lastMessage && chatRoom.lastMessage.content}</Text>
+                        <Text style={styles.lastMessage}>{chatRoom?.lastMessage ? `${chatRoom.lastMessage.user.name}: ${chatRoom.lastMessage.content}` : ''}</Text>
                     </View>
                 </View>
-                <Text style={{ ...styles.timeStamp, color: Colors[colorSchema].chatScreenTimeStamp }}>{chatRoom.lastMessage && moment(chatRoom.lastMessage.createdAt as string).format("DD/MM/YYYY")}</Text>
+                <Text style={{ ...styles.timeStamp, color: Colors[colorSchema].chatScreenTimeStamp }}>{chatRoom?.lastMessage && moment(chatRoom.lastMessage.createdAt as string).format("DD/MM/YYYY")}</Text>
             </View>
         </TouchableWithoutFeedback>
     );
